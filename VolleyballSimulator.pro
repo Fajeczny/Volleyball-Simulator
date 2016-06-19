@@ -13,7 +13,8 @@ SOURCES += main.cpp \
     statistics.cpp \
     vposition.cpp \
     ball.cpp \
-    court.cpp
+    court.cpp \
+    team.cpp
 
 HEADERS += \
     receiver.h \
@@ -25,6 +26,7 @@ HEADERS += \
     statistics.h \
     vposition.h \
     ball.h \
-    court.h
+    court.h \
+    team.h
 
 QMAKE_CXXFLAGS += -std=c++11

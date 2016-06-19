@@ -1,9 +1,11 @@
 #include <player.h>
 #include <sstream>
+#include <iostream>
 
 Player::Player(std::pair<int,int>newposition, std::string sur, std::string newteam, char sym)
     : position(newposition), surname(sur), team (newteam), symbol(sym)
 {
+
 }
 
 std::pair<int,int>Player::getposition()
