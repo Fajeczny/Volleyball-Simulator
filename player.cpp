@@ -1,4 +1,4 @@
-#include <Player.h>
+#include <player.h>
 #include <sstream>
 
 Player::Player(int d, int s, std::string sur, std::string newteam, char sym)

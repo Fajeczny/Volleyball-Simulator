@@ -4,18 +4,15 @@
 
 class Player
 {
-    private:
+    protected:
         int x,y;
         std::string surname;
         std::string team;
         char symbol;
-        void defense(int def);
-        void receive(int rec);
-        void block(int blo);
-        void attack (int att);
-        void service (int ser);
-        void setting (int set);
     public:
+        void defense(int def);
+        void block(int blo);
+        void service (int ser);
         Player (int d, int s, std::string sur, std::string newteam, char sym);
         friend std::ostream& operator << (std::ostream& os,const Player& cc);
         friend bool operator < (Player player1, Player player2);

@@ -1,6 +1,6 @@
 #include <iostream>
-#include <Game.h>
-#include <Player.h>
+#include <game.h>
+#include <player.h>
 using namespace std;
 
 

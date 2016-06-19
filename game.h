@@ -2,8 +2,8 @@
 #define Game_H
 #include <vector>
 #include <iostream>
-#include "Player.h"
 #include <array>
+#include <player.h>
 
 class Game
 {
