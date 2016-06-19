@@ -1,12 +1,12 @@
 #ifndef SETTER_H
 #define SETTER_H
-#include <player.h>
+#include "vposition.h"
 
-class Setter : public Player
+class Setter : public VPosition
 {
     public:
-        void setting (int set);
         Setter();
+        void doaction(std::pair<int,int>position, Statistics stats) final;
 };
 
 #endif // SETTER_H

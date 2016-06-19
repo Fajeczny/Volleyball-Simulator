@@ -9,7 +9,11 @@ SOURCES += main.cpp \
     game.cpp \
     oppositespiker.cpp \
     middleblocker.cpp \
-    setter.cpp
+    setter.cpp \
+    statistics.cpp \
+    vposition.cpp \
+    ball.cpp \
+    court.cpp
 
 HEADERS += \
     receiver.h \
@@ -17,6 +21,10 @@ HEADERS += \
     game.h \
     oppositespiker.h \
     middleblocker.h \
-    setter.h
+    setter.h \
+    statistics.h \
+    vposition.h \
+    ball.h \
+    court.h
 
 QMAKE_CXXFLAGS += -std=c++11

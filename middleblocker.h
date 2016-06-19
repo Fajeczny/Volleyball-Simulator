@@ -1,12 +1,12 @@
 #ifndef MIDDLEBLOCKER_H
 #define MIDDLEBLOCKER_H
-#include <player.h>
+#include "vposition.h"
 
-class MiddleBlocker : public Player
+class MiddleBlocker : public VPosition
 {
     public:
-        void attack (int att);
         MiddleBlocker();
+        void doaction(std::pair<int,int>position, Statistics stats) final;
 };
 
 #endif // MIDDLEBLOCKER_H

@@ -1,19 +1,14 @@
 #include <player.h>
 #include <sstream>
 
-Player::Player(int d, int s, std::string sur, std::string newteam, char sym)
-    : x(d), y(s), surname(sur), team (newteam), symbol(sym)
+Player::Player(std::pair<int,int>newposition, std::string sur, std::string newteam, char sym)
+    : position(newposition), surname(sur), team (newteam), symbol(sym)
 {
 }
 
-int Player::getx()
+std::pair<int,int>Player::getposition()
 {
-    return x;
-}
-
-int Player::gety()
-{
-    return y;
+    return position;
 }
 
 char Player::getsymbol()
