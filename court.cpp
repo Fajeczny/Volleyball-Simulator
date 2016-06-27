@@ -7,35 +7,29 @@
 Court::Court(int w, int h, Ball newball, std::array<Team,2>& teams)
     : width(w), height(h),  clubs(teams), ball(newball)
 {
-    clubs[0].addplayer({w-14, h/2-13},"Fabian Drzyzga",'1');
-    clubs[0].addplayer({w-14, h/2-4},"Thomas Jaeschke",'2');
-    clubs[0].addplayer({w-9, h/2-4},"Dmytro Pashytskyy",'3');
-    clubs[0].addplayer({w-4, h/2-4},"Bartosz Kurek",'4');
-    clubs[0].addplayer({w-4, h/2-13},"Olieg Achrem",'5');
-    clubs[0].addplayer({w-9, h/2-13},"Piotr Nowakowski",'6');
+    clubs[0].addplayer({w/6, h/6},"Fabian Drzyzga",'1');
+    clubs[0].addplayer({w/6, 4*h/10},"Thomas Jaeschke",'2');
+    clubs[0].addplayer({w/2, 4*h/10},"Dmytro Pashytskyy",'3');
+    clubs[0].addplayer({5*w/6, 4*h/10},"Bartosz Kurek",'4');
+    clubs[0].addplayer({5*w/6, h/6},"Olieg Achrem",'5');
+    clubs[0].addplayer({w/2, h/6},"Piotr Nowakowski",'6');
 
-    clubs[1].addplayer({w-4, h/2+13},"Maxim Mikhaylov",'1');
-    clubs[1].addplayer({w-4, h/2+4},"Matthew Anderson",'2');
-    clubs[1].addplayer({w-9, h/2+4},"Andrey Aschev",'3');
-    clubs[1].addplayer({w-14, h/2+4},"Aleksandr Butko",'4');
-    clubs[1].addplayer({w-14, h/2+13},"Wilfredo Leon",'5');
-    clubs[1].addplayer({w-9, h/2+13},"Aleksandr Gutsalyuk",'6');
+    clubs[1].addplayer({5*w/6, 5*h/6},"Aleksandr Butko",'1');
+    clubs[1].addplayer({5*w/6, 6*h/10},"Matthew Anderson",'2');
+    clubs[1].addplayer({w/2, 6*h/10},"Andrey Aschev",'3');
+    clubs[1].addplayer({w/6, 6*h/10},"Maxim Mikhaylov",'4');
+    clubs[1].addplayer({w/6, 5*h/6},"Wilfredo Leon",'5');
+    clubs[1].addplayer({w/2, 5*h/6},"Aleksandr Gutsalyuk",'6');
 
     court.reserve(width);
     for (int i=0; i<width; ++i)
     {
-//        if (i==width/2) //net
-//        {
-//            court.push_back(std::vector<char> (height,'=') );
-//        }
-//        else if(i==(width/3)-1 || i==(2*width/3) || i == width-1)   //3rd and 9th meter lines
-//        {
-//            court.push_back(std::vector<char> (height,'_') );
-//        }
-//        else
-//        {
-            court.push_back(std::vector<char> (height,' ') );
-//        }
+        court.push_back(std::vector<char> (height,' ') );
+        court[i].front() = '-';
+        court[i].back() = '-';
+        court[i][court[i].size()/2] = '=';
+        court[i][court[i].size()/2 + court[i].size()/6] = '-';
+        court[i][court[i].size()/2 - court[i].size()/6] = '-';
     }
     initialcourt = court;
 }
@@ -48,32 +42,24 @@ std::ostream& operator << (std::ostream& output, Court& courtclass)
         output << courtclass.clubs[0].getplayers()[i] << "\t\t"
                             << courtclass.clubs[1].getplayers()[i] << '\n';
     }
-    output << "\t ";    //indent for 9th meter line
-//    for (int i=0; i<courtclass.width/2-3; ++i)
-//    { //upper 9th meter line
-//        output << ' ' << '_';
-//    }
+
     output << std::endl;
     for (int i=0; i<courtclass.height; ++i)
     {
         for (int j=0; j<courtclass.width; ++j)
         {
-//            if (j==0 && i!=courtclass.width/2)
-//            {
-//                output << "\t|" << " ";
-//            }
-//            else if (j == courtclass.height-1 && i!=courtclass.width/2)
-//            {
-//                output << "|" << " ";
-//            }
-//            else if (j==0 && i==courtclass.width/2)
-//            {
-//                output << "\t=" << " ";
-//            }
-//            else
-//            {
+            if (j==0)
+            {
+                output << "\t|" << " ";
+            }
+            else if (j == courtclass.width-1)
+            {
+                output << "|" << " ";
+            }
+            else
+            {
                 output << courtclass.court[j][i] << " ";
-//            }
+            }
         }
         output << std::endl;
     }
@@ -83,7 +69,6 @@ std::ostream& operator << (std::ostream& output, Court& courtclass)
 
 void Court::sortplayers()
 {
-//    std::sort(players.begin(),players.end());
 }
 
 void Court::setposition (std::pair<int,int>position, char sym)
@@ -98,7 +83,6 @@ void Court::update ()
     {
         for (std::size_t i=0; i<clubs[j].getplayers().size(); ++i)
         {
-            //std::cout << clubs[j].getplayers()[i].getposition().first << "  " << clubs[j].getplayers()[i].getposition().second << "\n";
             setposition(clubs[j].getplayers()[i].getposition(), clubs[j].getplayers()[i].getsymbol());
         }
     }
