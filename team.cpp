@@ -1,7 +1,7 @@
 #include "team.h"
 #include <iostream>
 
-Team::Team(std::string teamname) : name(teamname)
+Team::Team(std::string teamname) : points(0), sets(0), name(teamname)
 {
 
 }
@@ -19,4 +19,14 @@ std::vector<Player>& Team::getplayers()
 void Team::addplayer (std::pair<int,int>position, std::string sur, char sym)
 {
     players.push_back(Player(position,sur,name,sym));
+}
+
+int Team::getpoints()
+{
+    return points;
+}
+
+int Team::getsets()
+{
+    return sets;
 }

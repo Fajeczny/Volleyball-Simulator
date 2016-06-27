@@ -12,7 +12,7 @@ class Game
     private:
         Court court;
     public:
-        Game (int w, int h, std::array<Team, 2>& clubs);
+        Game (int w, int h, std::array<Team,2>& clubs);
         friend std::ostream& operator << (std::ostream& output, const Game& gameclass);
         void update();
 };
