@@ -53,3 +53,19 @@ void Player::setposition(std::pair<int,int> position)
 {
     this->position = position;
 }
+
+std::pair<int,int>Player::getvelocity()
+{
+    return velocity;
+}
+
+void Player::setvelocity(std::pair<int, int> velocity)
+{
+    this->velocity = velocity;
+}
+
+void Player::update()
+{
+    position.first+=velocity.first;
+    position.second+=velocity.second;
+}

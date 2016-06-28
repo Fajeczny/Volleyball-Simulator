@@ -1,4 +1,6 @@
 #include "court.h"
+#include <ctime>
+#include <cstdlib>
 #include <sstream>
 #include <algorithm>
 #include <iostream>
@@ -88,7 +90,7 @@ void Court::setposition (std::pair<int,int> position, char sym)
     court[position.first][position.second] = sym;
 }
 
-void Court::update ()
+void Court::update (bool& isservice, int &servingteam)
 {
     court = initialcourt;
     for (std::size_t j=0; j<clubs.size(); ++j)
@@ -99,6 +101,10 @@ void Court::update ()
         }
     }
 
+    std::pair<int,int> destinationpoint;
+    srand (time(NULL));
+    destinationpoint = {(rand()%width)+width/2,(rand()%height)+height/2};
+
     if (ball.getposition().first >= 0 && ball.getposition().first < width
             && ball.getposition().second >= 0 && ball.getposition().second < height)
     {
@@ -107,9 +113,9 @@ void Court::update ()
 
     std::cout << *this;
 
-    ball.update();
+    ball.update(width,height, clubs, isservice, servingteam);
 
-    usleep(0.2*1000000);        //delay (k*1s)
+    usleep(0.5*1000000);        //delay (k*1s)
 }
 
 Team& Court::getteam(int teamID)
@@ -120,4 +126,14 @@ Team& Court::getteam(int teamID)
 Ball& Court::getball()
 {
     return ball;
+}
+
+int Court::getwidth()
+{
+    return width;
+}
+
+int Court::getheight()
+{
+    return height;
 }

@@ -5,6 +5,7 @@
 #include <vector>
 #include "player.h"
 
+class Player;
 class Team
 {
     private:
@@ -19,6 +20,7 @@ class Team
         int getsets();
         std::string getname();
         std::vector<Player> &getplayers();
+        void setpoints(int settingthosepoints);
 };
 
 #endif // TEAM_H
