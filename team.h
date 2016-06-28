@@ -21,6 +21,7 @@ class Team
         std::string getname();
         std::vector<Player> &getplayers();
         void setpoints(int settingthosepoints);
+        void setsets (int settingthosesets);
 };
 
 #endif // TEAM_H

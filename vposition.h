@@ -6,6 +6,7 @@
 class VPosition
 {
     public:
+        VPosition();
         bool defending(std::pair<int,int>position, Statistics stats);
         bool attacking(std::pair<int,int>position, Statistics stats);
         bool blocking(std::pair<int,int>position, Statistics stats);

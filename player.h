@@ -11,6 +11,8 @@ class Player
         std::string surname;
         std::string team;
         char symbol;
+        int iterations;
+        std::pair<int,int> initialposition;
     public:
         Player (std::pair<int,int>newposition, std::string sur, std::string newteam, char sym);
         friend std::ostream& operator << (std::ostream& output, const Player& playerclass);
@@ -21,8 +23,9 @@ class Player
         std::string getteam();
         void service(Ball& serviceball);
         void setposition(std::pair<int,int> position);
-        void setvelocity(std::pair<int,int> velocity);
+        void setvelocity(std::pair<std::pair<int,int>,int> velocity);
         void update();
+        std::pair<int,int> getinitialposition();
 };
 
 #endif // PLAYER_H

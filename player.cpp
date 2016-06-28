@@ -3,7 +3,7 @@
 #include <iostream>
 
 Player::Player(std::pair<int,int>newposition, std::string sur, std::string newteam, char sym)
-    : position(newposition), surname(sur), team (newteam), symbol(sym)
+    : position(newposition), surname(sur), team (newteam), symbol(sym), iterations(0), initialposition(newposition)
 {
 
 }
@@ -59,13 +59,25 @@ std::pair<int,int>Player::getvelocity()
     return velocity;
 }
 
-void Player::setvelocity(std::pair<int, int> velocity)
+void Player::setvelocity(std::pair<std::pair<int,int>,int> velocity)
 {
-    this->velocity = velocity;
+    this->velocity = velocity.first;
+    iterations = abs(velocity.second);
 }
 
 void Player::update()
 {
-    position.first+=velocity.first;
-    position.second+=velocity.second;
+//    std::cout << iterations << "\n\n\n\n\n";
+
+    if(iterations>0)
+    {
+        position.first+=velocity.first;
+        position.second+=velocity.second;
+        --iterations;
+    }
+}
+
+std::pair<int,int> Player::getinitialposition()
+{
+    return initialposition;
 }

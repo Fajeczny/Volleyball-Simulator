@@ -37,6 +37,8 @@ Court::Court(int w, int h, Ball newball, std::array<Team,2>& teams)
 //    clubs[1].addplayer({w/2, 5*h/6},"Wilfredo Leon",'5');
 //    clubs[1].addplayer({5*w/6, 5*h/6},"Aleksandr Gutsalyuk",'6');
 
+    std::string proszetrzy = "  PROSZE TRZY ZERO";
+    std::string dajpantrzy = " DAJ PAN TRZY ZERO";
     court.reserve(width);
     for (int i=0; i<width; ++i)
     {
@@ -44,6 +46,8 @@ Court::Court(int w, int h, Ball newball, std::array<Team,2>& teams)
         court[i].front() = '-';
         court[i].back() = '-';
         court[i][court[i].size()/2] = '=';
+//        court[i][court[i].size()/2] = dajpantrzy[i];
+//        court[i][court[i].size()/2] = proszetrzy[i];
         court[i][court[i].size()/2 + court[i].size()/6] = '-';
         court[i][court[i].size()/2 - court[i].size()/6] = '-';
     }
@@ -101,9 +105,7 @@ void Court::update (bool& isservice, int &servingteam)
         }
     }
 
-    std::pair<int,int> destinationpoint;
     srand (time(NULL));
-    destinationpoint = {(rand()%width)+width/2,(rand()%height)+height/2};
 
     if (ball.getposition().first >= 0 && ball.getposition().first < width
             && ball.getposition().second >= 0 && ball.getposition().second < height)
@@ -111,9 +113,17 @@ void Court::update (bool& isservice, int &servingteam)
         setposition(ball.getposition(),ball.getsymbol());
     }
 
-    std::cout << *this;
+    std::cout << *this;    
 
+    for(Team &team:clubs)
+    {
+        for (Player &player:team.getplayers())
+        {
+            player.update();
+        }
+    }
     ball.update(width,height, clubs, isservice, servingteam);
+
 
     usleep(0.5*1000000);        //delay (k*1s)
 }

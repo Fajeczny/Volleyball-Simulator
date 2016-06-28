@@ -1,5 +1,10 @@
 #include "oppositespiker.h"
 
-//OppositeSpiker::OppositeSpiker()
-//{
-//}
+OppositeSpiker::OppositeSpiker()
+{
+}
+
+void OppositeSpiker::doaction(std::pair<int, int> position, Statistics stats)
+{
+
+}

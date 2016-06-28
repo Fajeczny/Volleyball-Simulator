@@ -3,8 +3,11 @@
 #include <vector>
 #include <iostream>
 #include <array>
-
 #include "court.h"
+#include "oppositespiker.h"
+#include "setter.h"
+#include "middleblocker.h"
+#include "receiver.h"
 
 class Game
 {
@@ -12,6 +15,10 @@ class Game
         Court court;
         bool isservice;
         int servingteam;
+        OppositeSpiker oppositespiker;
+        Setter setter;
+        MiddleBlocker middleblocker;
+        Receiver receiver;
     public:
         Game (int w, int h, std::array<Team,2>& clubs);
         friend std::ostream& operator << (std::ostream& output, const Game& gameclass);

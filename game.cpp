@@ -4,16 +4,19 @@
 #include <unistd.h>
 #include <algorithm>
 #include <sstream>
+#include <climits>
 
 Game::Game (int w, int h, std::array <Team,2>& clubs)
-    : court(w,h,Ball({3,0},'@',{0,0}),clubs), isservice(true), servingteam(0)
+    : court(w,h,Ball({3,0},'@',{0,0}),clubs), isservice(true), servingteam(0),
+      oppositespiker(), setter(), middleblocker(), receiver()
 {
 
 }
 
 int Game::gcd(int a, int b)
 {
-
+    a = abs(a);
+    b = abs(b);
     if (a < b)
     {
         int tmp;
@@ -49,12 +52,17 @@ void Game::update()
          }
     if(isservice == true)   //while serving
     {
-
-
-        std::cout << point.first << " " << point.second;
+        for(int i=0; i<2; ++i)
+        {
+            for(Player& player:court.getteam(i).getplayers())
+            {
+                player.setposition(player.getinitialposition());
+                player.setvelocity({{0,0},0});
+            }
+        }
         std::vector<Player>& players = court.getteam(servingteam).getplayers();
 
-        int min = 9999999999;
+        int min = INT_MAX;
         int servingguyID = 0;
         for (std::size_t i=0; i<players.size(); ++i)
         {
@@ -72,14 +80,16 @@ void Game::update()
 
         std::pair<int,int> destinationpoint = {(rand()%court.getwidth()),(rand()%court.getheight())};
 
-        calculatevelocity(players[servingguyID].getposition(),destinationpoint);
+        players[servingguyID].setvelocity(calculatevelocity(players[servingguyID].getposition(),players[servingguyID].getinitialposition()));
         court.getball().setvelocity(calculatevelocity(players[servingguyID].getposition(),destinationpoint));
 
         court.getball().setlastballtouch(servingteam);
         isservice = false;
+
+        usleep (1*1000000);
     }
 
-//    std::cout << "\033[2J\033[1;1H";    //clearing terminal in Linux
+    std::cout << "\033[2J\033[1;1H";    //clearing terminal in Linux
     court.update(isservice, servingteam);
 }
 

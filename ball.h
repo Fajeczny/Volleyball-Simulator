@@ -22,6 +22,7 @@ class Ball
         char getsymbol();
         void setvelocity(std::pair<std::pair<int,int>,int> velocity);
         void setlastballtouch(int lasttouch);
+        void setsymbol(char winningpointsymbol);
 };
 
 #endif // BALL_H

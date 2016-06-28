@@ -33,5 +33,10 @@ int Team::getsets()
 
 void Team::setpoints(int settingthosepoints)
 {
-    this->points = settingthosepoints;
+    points = settingthosepoints;
+}
+
+void Team::setsets(int settingthosesets)
+{
+    sets = settingthosesets;
 }

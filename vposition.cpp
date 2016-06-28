@@ -1,5 +1,5 @@
 #include "vposition.h"
 
-//VPosition::VPosition()
-//{
-//}
+VPosition::VPosition()
+{
+}
