@@ -18,9 +18,10 @@ class Court
     public:
         friend std::ostream& operator << (std::ostream& output, Court& courtclass);
         Court(int w, int h, Ball ball, std::array<Team,2>& teams);
-        void setposition (std::pair<int,int>position, char sym);
-        void sortplayers();
+        void setposition (std::pair<int,int> position, char sym);
         void update();
+        Team& getteam(int teamID);
+        Ball& getball();
 };
 
 #endif // COURT_H

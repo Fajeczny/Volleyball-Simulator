@@ -43,3 +43,13 @@ bool operator < (Player player1, Player player2)
     secondteam << player2.symbol << player2.team;
     return firstteam.str()<secondteam.str();
 }
+
+void Player::service(Ball& serviceball)
+{
+
+}
+
+void Player::setposition(std::pair<int,int> position)
+{
+    this->position = position;
+}

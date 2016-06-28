@@ -7,7 +7,7 @@
 Court::Court(int w, int h, Ball newball, std::array<Team,2>& teams)
     : width(w), height(h),  clubs(teams), ball(newball)
 {
-    clubs[0].addplayer({w/6, h/6},"Bartosz Kurek",'1');   //default values
+    clubs[0].addplayer({w/6, h/6},"Bartosz Kurek",'1');     //rectangular positions
     clubs[0].addplayer({w/6, 4*h/10},"Fabian Drzyzga",'2');
     clubs[0].addplayer({w/2, 4*h/10},"Dmytro Pashytskyy",'3');
     clubs[0].addplayer({5*w/6, 4*h/10},"Thomas Jaeschke",'4');
@@ -83,12 +83,7 @@ std::ostream& operator << (std::ostream& output, Court& courtclass)
     return output;
 }
 
-
-void Court::sortplayers()
-{
-}
-
-void Court::setposition (std::pair<int,int>position, char sym)
+void Court::setposition (std::pair<int,int> position, char sym)
 {
     court[position.first][position.second] = sym;
 }
@@ -103,7 +98,6 @@ void Court::update ()
             setposition(clubs[j].getplayers()[i].getposition(), clubs[j].getplayers()[i].getsymbol());
         }
     }
-    ball.update();
 
     if (ball.getposition().first >= 0 && ball.getposition().first < width
             && ball.getposition().second >= 0 && ball.getposition().second < height)
@@ -112,5 +106,18 @@ void Court::update ()
     }
 
     std::cout << *this;
-    usleep(0.1*1000000);        //delay (us)
+
+    ball.update();
+
+    usleep(0.2*1000000);        //delay (k*1s)
+}
+
+Team& Court::getteam(int teamID)
+{
+    return clubs[teamID];
+}
+
+Ball& Court::getball()
+{
+    return ball;
 }

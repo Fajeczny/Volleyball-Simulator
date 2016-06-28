@@ -3,12 +3,13 @@
 Ball::Ball(std::pair<int,int>ballposition,char ballsymbol,std::pair<int,int>speed={0,0})
     : position(ballposition), velocity(speed), symbol(ballsymbol)
 {
+
 }
 
 void Ball::update()
 {
-    position.first+=velocity.first;
-    position.second+=velocity.second;
+        position.first+=velocity.first;
+        position.second+=velocity.second;
 }
 
 std::pair<int,int> Ball::getposition()
@@ -19,4 +20,14 @@ std::pair<int,int> Ball::getposition()
 char Ball::getsymbol()
 {
     return symbol;
+}
+
+void Ball::setposition(std::pair<int,int> position)
+{
+    this->position = position;
+}
+
+void Ball::setvelocity(std::pair<int,int> velocity)
+{
+    this->velocity = velocity;
 }

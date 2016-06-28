@@ -18,7 +18,7 @@ class Team
         int getpoints();
         int getsets();
         std::string getname();
-        std::vector<Player> &getplayers(); //Returning a vector as a reference
+        std::vector<Player> &getplayers();
 };
 
 #endif // TEAM_H
