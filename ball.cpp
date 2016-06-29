@@ -3,7 +3,7 @@
 #include <unistd.h>
 
 Ball::Ball(std::pair<int,int>ballposition,char ballsymbol,std::pair<int,int>speed={0,0})
-    : position(ballposition), velocity(speed), symbol(ballsymbol), iterations(0), lastballtouch(0)
+    : position(ballposition), velocity(speed), symbol(ballsymbol), iterations(0), lastballtouch(0), pointsymbol('P')
 {
 
 }
@@ -36,8 +36,6 @@ void Ball::update(int courtwidth, int courtheight, std::array<Team,2>& teams, bo
             if(position.first > 0 && position.first < courtwidth && position.second >0 && position.second < courtheight/2)
             {
                 teams[1].setpoints(teams[1].getpoints()+1);
-                if(teams[1].getpoints() == 25)
-                    teams[1].setsets(teams[1].getsets()+1);
                 servingteam = 1;
             }
             else
@@ -47,19 +45,45 @@ void Ball::update(int courtwidth, int courtheight, std::array<Team,2>& teams, bo
             }
         }
 
-        if(teams[0].getpoints() == 25)
+        if(teams[0].getsets()==2 && teams[1].getsets()==2)
         {
-            teams[0].setsets(teams[0].getsets()+1);
-            teams[0].setpoints(0);
-            teams[1].setpoints(0);
+            if(teams[0].getpoints() == 15)
+            {
+                teams[0].setsets(teams[0].getsets()+1);
+            }
+            else if(teams[1].getpoints() == 15)
+            {
+                teams[1].setsets(teams[1].getsets()+1);
+            }
         }
-        if(teams[1].getpoints() == 25)
+        else
         {
-            teams[1].setsets(teams[1].getsets()+1);
-            teams[0].setpoints(0);
-            teams[1].setpoints(0);
+            if(teams[0].getpoints() == 25)
+            {
+                teams[0].setsets(teams[0].getsets()+1);
+                usleep(1*1000000);
+                teams[0].setpoints(0);
+                teams[1].setpoints(0);
+            }
+            else if(teams[1].getpoints() == 25)
+            {
+                teams[1].setsets(teams[1].getsets()+1);
+                usleep(1*1000000);
+                teams[0].setpoints(0);
+                teams[1].setpoints(0);
+            }
         }
 
+        if (teams[0].getsets()==3)
+        {
+            std::cout << "\n\t\tWinner: Asseco Resovia!\n\n\n";
+            exit(1);
+        }
+        else if(teams[1].getsets()==3)
+        {
+            std::cout << "\n\t\tWinner: Zenit Kazan!\n\n\n";
+            exit(1);
+        }
         usleep(1*1000000);
 
         isservice = true;

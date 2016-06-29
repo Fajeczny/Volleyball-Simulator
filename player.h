@@ -2,7 +2,11 @@
 #define PLAYER_H
 #include <string>
 #include "ball.h"
+#include "statistics.h"
+#include "vposition.h"
+
 class Ball;
+class VPosition;
 class Player
 {
     private:
@@ -13,8 +17,10 @@ class Player
         char symbol;
         int iterations;
         std::pair<int,int> initialposition;
+        Statistics statistics;
+        VPosition* volleyballposition;
     public:
-        Player (std::pair<int,int>newposition, std::string sur, std::string newteam, char sym);
+        Player (std::pair<int,int>newposition, std::string sur, std::string newteam, char sym, Statistics newstatistics, VPosition* vposition);
         friend std::ostream& operator << (std::ostream& output, const Player& playerclass);
         friend bool operator < (Player player1, Player player2);
         std::pair<int,int> getposition();

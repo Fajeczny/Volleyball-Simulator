@@ -16,9 +16,9 @@ std::vector<Player>& Team::getplayers()
     return players;
 }
 
-void Team::addplayer (std::pair<int,int>position, std::string sur, char sym)
+void Team::addplayer (std::pair<int,int>position, std::string sur, char sym, Statistics statistics,VPosition* volleyballposition)
 {
-    players.push_back(Player(position,sur,name,sym));
+    players.push_back(Player(position,sur,name,sym,statistics,volleyballposition));
 }
 
 int Team::getpoints()

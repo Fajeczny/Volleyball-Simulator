@@ -6,6 +6,10 @@
 #include "ball.h"
 #include "team.h"
 #include <array>
+#include "oppositespiker.h"
+#include "setter.h"
+#include "middleblocker.h"
+#include "receiver.h"
 
 class Court
 {
@@ -15,6 +19,10 @@ class Court
         std::vector <std::vector<char>> court;
         std::array <Team,2> clubs;
         Ball ball;
+        OppositeSpiker oppositespiker;
+        Setter setter;
+        MiddleBlocker middleblocker;
+        Receiver receiver;
     public:
         friend std::ostream& operator << (std::ostream& output, Court& courtclass);
         Court(int w, int h, Ball ball, std::array<Team,2>& teams);

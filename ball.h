@@ -13,6 +13,7 @@ class Ball
         char symbol;
         int iterations;
         int lastballtouch;
+        char pointsymbol;
     public:
         Ball(std::pair<int,int> ballposition, char ballsymbol, std::pair<int,int> speed);
         void update(int courtwidth, int courtheight, std::array<Team,2>& teams, bool &isservice, int &servingteam);

@@ -4,6 +4,8 @@
 #include <utility>
 #include <vector>
 #include "player.h"
+#include "statistics.h"
+#include "vposition.h"
 
 class Player;
 class Team
@@ -15,7 +17,7 @@ class Team
         std::vector<Player> players;
     public:
         Team(std::string teamname);
-        void addplayer (std::pair<int,int> position, std::string sur, char sym);
+        void addplayer (std::pair<int,int> position, std::string sur, char sym, Statistics statistics, VPosition* volleyballposition);
         int getpoints();
         int getsets();
         std::string getname();

@@ -7,8 +7,8 @@
 #include <climits>
 
 Game::Game (int w, int h, std::array <Team,2>& clubs)
-    : court(w,h,Ball({3,0},'@',{0,0}),clubs), isservice(true), servingteam(0),
-      oppositespiker(), setter(), middleblocker(), receiver()
+    : court(w,h,Ball({3,0},'@',{0,0}),clubs), isservice(true), servingteam(0)
+
 {
 
 }
@@ -52,6 +52,7 @@ void Game::update()
          }
     if(isservice == true)   //while serving
     {
+//        usleep(1*1000000);
         for(int i=0; i<2; ++i)
         {
             for(Player& player:court.getteam(i).getplayers())
@@ -78,15 +79,23 @@ void Game::update()
 
         srand (time(NULL));
 
-        std::pair<int,int> destinationpoint = {(rand()%court.getwidth()),(rand()%court.getheight())};
+        std::pair<int,int> destinationpoint;
+
+        if (servingteam == 0)
+        {
+            destinationpoint = {(rand()%court.getwidth()/2+2),(rand()%2*court.getheight()/3)+court.getheight()/2};
+        }
+        else
+        {
+            destinationpoint = {(rand()%court.getwidth()/2+2),(rand()%2*court.getheight()/3)+(1-court.getheight()/6)};
+//            std::cout << destinationpoint.first << "\n\n\n\n\n" << destinationpoint.second << "\n\n\n\n\n";
+        }
 
         players[servingguyID].setvelocity(calculatevelocity(players[servingguyID].getposition(),players[servingguyID].getinitialposition()));
         court.getball().setvelocity(calculatevelocity(players[servingguyID].getposition(),destinationpoint));
 
         court.getball().setlastballtouch(servingteam);
         isservice = false;
-
-        usleep (1*1000000);
     }
 
     std::cout << "\033[2J\033[1;1H";    //clearing terminal in Linux

@@ -7,10 +7,10 @@ class VPosition
 {
     public:
         VPosition();
-        bool defending(std::pair<int,int>position, Statistics stats);
-        bool attacking(std::pair<int,int>position, Statistics stats);
-        bool blocking(std::pair<int,int>position, Statistics stats);
-        bool serving(std::pair<int,int>position, Statistics stats);
+        bool attacking(std::pair<int,int> position, Statistics stats);
+        bool defending(std::pair<int,int> position, Statistics stats);
+        bool receiving(std::pair<int,int> position, Statistics stats);
+        bool setting(std::pair<int,int> position, Statistics stats);
 
         virtual void doaction(std::pair<int,int>position, Statistics stats) =0;
 };

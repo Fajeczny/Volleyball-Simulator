@@ -7,35 +7,21 @@
 #include <unistd.h>
 
 Court::Court(int w, int h, Ball newball, std::array<Team,2>& teams)
-    : width(w), height(h),  clubs(teams), ball(newball)
+    : width(w), height(h),  clubs(teams), ball(newball), oppositespiker(), setter(), middleblocker(), receiver()
 {
-    clubs[0].addplayer({w/6, h/6},"Bartosz Kurek",'1');     //rectangular positions
-    clubs[0].addplayer({w/6, 4*h/10},"Fabian Drzyzga",'2');
-    clubs[0].addplayer({w/2, 4*h/10},"Dmytro Pashytskyy",'3');
-    clubs[0].addplayer({5*w/6, 4*h/10},"Thomas Jaeschke",'4');
-    clubs[0].addplayer({5*w/6, h/6},"Piotr Nowakowski",'5');
-    clubs[0].addplayer({w/2, h/6},"Olieg Achrem",'6');
+    clubs[0].addplayer({w/6, 4*h/10},"Fabian Drzyzga",'1',Statistics({0,0,0,4}),&setter); //rectangular positions
+    clubs[0].addplayer({w/6, h/6},"Bartosz Kurek",'2',Statistics({80,30,40,0}),&oppositespiker);
+    clubs[0].addplayer({w/2, 4*h/10},"Dmytro Pashytskyy",'3',Statistics({80,20,30,0}),&middleblocker);
+    clubs[0].addplayer({5*w/6, 4*h/10},"Thomas Jaeschke",'4',Statistics({70,40,60,0}),&receiver);
+    clubs[0].addplayer({w/2, h/6},"Olieg Achrem",'5',Statistics({70,70,70,0}),&receiver);
+    clubs[0].addplayer({5*w/6, h/6},"Piotr Nowakowski",'6',Statistics({90,10,20,0}),&middleblocker);
 
-//    clubs[0].addplayer({w/10, 0},"Bartosz Kurek",'1');    //serving positions
-//    clubs[0].addplayer({w/6, h/2-1},"Thomas Jaeschke",'2');
-//    clubs[0].addplayer({w/2, h/2-1},"Dmytro Pashytskyy",'3');
-//    clubs[0].addplayer({5*w/6, h/2-1},"Fabian Drzyzga",'4');
-//    clubs[0].addplayer({5*w/6, h/6},"Olieg Achrem",'5');
-//    clubs[0].addplayer({w/2, 1*h/10},"Piotr Nowakowski",'6');
-
-    clubs[1].addplayer({5*w/6, 5*h/6},"Maxim Mikhaylov",'1');
-    clubs[1].addplayer({5*w/6, 6*h/10},"Aleksandr Butko",'2');
-    clubs[1].addplayer({w/2, 6*h/10},"Andrey Aschev",'3');
-    clubs[1].addplayer({w/6, 6*h/10},"Matthew Anderson",'4');
-    clubs[1].addplayer({w/6, 5*h/6},"Aleksandr Gutsalyuk",'5');
-    clubs[1].addplayer({w/2, 5*h/6},"Wilfredo Leon",'6');
-
-//    clubs[1].addplayer({9*w/10, 9*h/10},"Maxim Mikhaylov",'1');   //receiving position
-//    clubs[1].addplayer({w/6, 5*h/6},"Matthew Anderson",'2');
-//    clubs[1].addplayer({w/10, 7*h/10},"Andrey Aschev",'3');
-//    clubs[1].addplayer({w/10, 6*h/10},"Aleksandr Butko",'4');
-//    clubs[1].addplayer({w/2, 5*h/6},"Wilfredo Leon",'5');
-//    clubs[1].addplayer({5*w/6, 5*h/6},"Aleksandr Gutsalyuk",'6');
+    clubs[1].addplayer({5*w/6, 6*h/10},"Aleksandr Butko",'1',Statistics({0,0,0,5}),&setter);
+    clubs[1].addplayer({5*w/6, 5*h/6},"Maxim Mikhaylov",'2',Statistics({90,40,50,0}),&oppositespiker);
+    clubs[1].addplayer({w/2, 6*h/10},"Andrey Aschev",'3',Statistics({70,20,30,0}),&middleblocker);
+    clubs[1].addplayer({w/6, 6*h/10},"Matthew Anderson",'4',Statistics({80,60,80,0}),&receiver);
+    clubs[1].addplayer({w/2, 5*h/6},"Wilfredo Leon",'5',Statistics({90,40,50,0}),&receiver);
+    clubs[1].addplayer({w/6, 5*h/6},"Aleksandr Gutsalyuk",'6',Statistics({70,10,20,0}),&middleblocker);
 
     std::string proszetrzy = "  PROSZE TRZY ZERO";
     std::string dajpantrzy = " DAJ PAN TRZY ZERO";
@@ -125,7 +111,7 @@ void Court::update (bool& isservice, int &servingteam)
     ball.update(width,height, clubs, isservice, servingteam);
 
 
-    usleep(0.5*1000000);        //delay (k*1s)
+    usleep(0.1*1000000);        //delay (k*1s)
 }
 
 Team& Court::getteam(int teamID)

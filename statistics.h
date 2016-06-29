@@ -1,19 +1,20 @@
 #ifndef STATISTICS_H
 #define STATISTICS_H
+#include <array>
 
 class Statistics
 {
     private:
-        int defense;
-        int block;
-        int service;
         int attack;
+        int defense;
+        int receive;
+        int setting;
     public:
-        Statistics(int stats[4]);
-        int getdefense();
-        int getblock();
-        int getservice();
+        Statistics(std::array<int,4> statistics);
         int getattack();
+        int getdefense();
+        int getreceive();
+        int getsetting();
 };
 
 #endif // STATISTICS_H
