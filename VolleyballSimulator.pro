@@ -4,29 +4,22 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    receiver.cpp \
-    player.cpp \
-    game.cpp \
-    oppositespiker.cpp \
-    middleblocker.cpp \
-    setter.cpp \
-    statistics.cpp \
-    vposition.cpp \
     ball.cpp \
     court.cpp \
+    game.cpp \
+    oppositespiker.cpp \
+    player.cpp \
+    receiver.cpp \
+    setter.cpp \
     team.cpp
 
 HEADERS += \
-    receiver.h \
-    player.h \
-    game.h \
-    oppositespiker.h \
-    middleblocker.h \
-    setter.h \
-    statistics.h \
-    vposition.h \
     ball.h \
     court.h \
+    game.h \
+    oppositespiker.h \
+    player.h \
+    receiver.h \
+    setter.h \
     team.h
 
-QMAKE_CXXFLAGS += -std=c++11

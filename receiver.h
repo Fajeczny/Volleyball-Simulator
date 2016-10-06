@@ -1,12 +1,12 @@
 #ifndef RECEIVER_H
 #define RECEIVER_H
-#include "vposition.h"
+#include "player.h"
 
-class Receiver : public VPosition
+class Receiver : public Player
 {
     public:
-        Receiver();
-        void doaction(std::pair<int,int>position, Statistics stats) final;
+        Receiver(std::pair<int,int>newposition, std::string sur, std::string newteam, char sym);
+        virtual std::pair<std::pair<double,double>,int> doaction(std::array<Team,2>& teams, int myside, int last, int &atackteam) final;
 };
 
 #endif // RECEIVER_H

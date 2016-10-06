@@ -17,4 +17,5 @@ int main()
     while (true){
         game.update();
     }
+    return 0;
 }

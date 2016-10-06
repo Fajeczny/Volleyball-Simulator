@@ -1,12 +1,12 @@
 #ifndef OPPOSITESPIKER_H
 #define OPPOSITESPIKER_H
-#include "vposition.h"
+#include "player.h"
 
-class OppositeSpiker : public VPosition
+class OppositeSpiker : public Player
 {
     public:
-        OppositeSpiker();
-        void doaction(std::pair<int,int>position, Statistics stats) final;
+        OppositeSpiker(std::pair<int,int>newposition, std::string sur, std::string newteam, char sym);
+        virtual std::pair<std::pair<double,double>,int> doaction(std::array<Team,2>& teams, int myside, int last, int &atackteam) final;
 };
 
 #endif // OPPOSITESPIKER_H

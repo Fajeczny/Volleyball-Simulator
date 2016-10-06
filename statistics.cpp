@@ -1,6 +1,10 @@
+/**
+* \file statistics.cpp
+* \brief Plik źródłowy klasy "Statistics"
+*/
 #include "statistics.h"
 
-Statistics::Statistics(int stats[4])
+Statistics::Statistics(std::array<int,4> statistics): attack(statistics[0]), defense(statistics[1]), receive(statistics[2]), setting(statistics[3])
 {
 
 }

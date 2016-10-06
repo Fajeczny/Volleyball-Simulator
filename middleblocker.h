@@ -1,12 +1,12 @@
+/**
+* \file middleblocker.h
+* \brief Plik nagłówkowy klasy "MiddleBlocker"
+*/
 #ifndef MIDDLEBLOCKER_H
 #define MIDDLEBLOCKER_H
-#include "vposition.h"
 
-class MiddleBlocker : public VPosition
-{
-    public:
-        MiddleBlocker();
-        void doaction(std::pair<int,int>position, Statistics stats) final;
-};
+/** \brief Definicja klasy środkowego
+ */
+
 
 #endif // MIDDLEBLOCKER_H
