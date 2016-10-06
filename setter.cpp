@@ -1,5 +1,5 @@
-#include <iostream>
 #include "setter.h"
+#include <iostream>
 
 Setter::Setter(std::pair<int,int>newposition, std::string sur, std::string newteam, char sym)
                   :Player(newposition, sur, newteam, sym)

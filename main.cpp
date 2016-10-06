@@ -1,8 +1,8 @@
 #include <iostream>
+#include <array>
 #include "game.h"
 #include "court.h"
 #include "player.h"
-#include <array>
 using namespace std;
 
 

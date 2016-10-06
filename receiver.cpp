@@ -1,5 +1,5 @@
-#include <iostream>
 #include "receiver.h"
+#include <iostream>
 
 Receiver::Receiver(std::pair<int,int>newposition, std::string sur, std::string newteam, char sym)
                   :Player(newposition, sur, newteam, sym)

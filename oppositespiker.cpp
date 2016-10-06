@@ -1,6 +1,6 @@
+#include "oppositespiker.h"
 #include <ctime>
 #include <iostream>
-#include "oppositespiker.h"
 #include <cstdlib>
 #include <unistd.h>
 #include <algorithm>
